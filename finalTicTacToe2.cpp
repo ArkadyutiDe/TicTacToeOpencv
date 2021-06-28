@@ -163,13 +163,7 @@ void CallBackTicTacToe(int event, int x, int y , int flags, void * list) {
 void draw(cv::Mat image, int move, int row, int col, int size, cv::Scalar lineColour) {
     int r = 100;
     int font = cv::FONT_HERSHEY_SIMPLEX;
-    double l1 = (size / 3);
-    double l2 = ((2 * size) / 3);
-    double start = 0;
-    double scale = 10;
-    double ls1 = start + (l1/2);
-    double ls2 = l1 + (l1/2);
-    double ls3 = l2 + (l1/2);
+    double l1 = (size / 3), l2 = ((2 * size) / 3), start = 0, scale = 10, ls1 = start + (l1/2), ls2 = l1 + (l1/2), ls3 = l2 + (l1/2);
     cv::Point2i pt;
 
     if (row == 0)row = ls1 - r;
@@ -205,7 +199,8 @@ cv::Mat drawOnBoard(TicTacToe myThings, cv::Mat image, cv::Scalar lineColour) {
     return image;
 }
 
-cv::Mat winningLine(cv::Mat image, int lineNumber, cv::Scalar lineColour) {
+cv::Mat winningLine(cv::Mat image, int lineNumber, int size, cv::Scalar lineColour) {
+    double l1 = (size / 3), l2 = ((2 * size) / 3), start = 0, scale = 10, ls1 = start + (l1/2), ls2 = l1 + (l1/2), ls3 = l2 + (l1/2);
     cv::Point2i pt1, pt2;
     float thickness = 7.5;
 
@@ -256,8 +251,8 @@ cv::Mat winningLine(cv::Mat image, int lineNumber, cv::Scalar lineColour) {
 
 int main() {
     cv::Scalar backGround = cv::Scalar(255, 0, 0), lineColour = cv::Scalar(255, 255, 255);
-    cv::Mat board = getBoard(900, backGround, lineColour), winnerShowingBoard(board.rows, board.rows, CV_8UC3, backGround), board2;
-    cv::Point2i point = cv::Point2i( ( ( (winnerShowingBoard.rows) / 3) - 200 ), ( ( 2 * (winnerShowingBoard.rows) / 3 ) - 150) );
+    cv::Mat board = getBoard(900, backGround, lineColour), winnerShowingBoard(300, 900, CV_8UC3, backGround), board2;
+    cv::Point2i point = cv::Point2i( ( ( (winnerShowingBoard.rows) / 3) ), ( ( 2 * (winnerShowingBoard.rows) / 3 )) );
     int font = cv::FONT_HERSHEY_SCRIPT_SIMPLEX;
     int key = -1, boardState = 1, line;
     float size = 3.5;
@@ -274,21 +269,19 @@ int main() {
         line = checkLine(gameState.position);
         boardState = boardFullOrNot(gameState.position);
         if (gameState.winner == __O || gameState.winner == __X || boardState == -1) {
-            board2 = winningLine(board2, line, lineColour);
+            board2 = winningLine(board2, line, board2.rows, lineColour);
             break;
         }
         key = cv::waitKey(33);
     }
 
-    if (gameState.winner != __X && gameState.winner != __O) {
-        cv::putText(winnerShowingBoard, "It's a draw...", point, font, size, lineColour);
-        cv::imshow("Draw", winnerShowingBoard);
-        cv::waitKey(0);
-        return 0;
-    }
+    if (gameState.winner == -1) cv::putText(winnerShowingBoard, "It's a draw...", point, font, size, lineColour);
+    else if(gameState.winner == __X) cv::putText(winnerShowingBoard, "X is the winner...", point, font, size, lineColour);
+    else if(gameState.winner == __O) cv::putText(winnerShowingBoard, "O is the winner...", point, font, size, lineColour);
 
-    // board2 = winningLine(board2, line, lineColour);
     cv::imshow("Board", board2);
+
+    cv::imshow("Result", winnerShowingBoard);
     cv::waitKey(0);
 
     return 0;
