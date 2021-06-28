@@ -1,6 +1,6 @@
 # TicTacToe
 
-## Build And Run
+## Build
 
 ```
 mkdir build
@@ -8,7 +8,7 @@ cd build
 cmake ..
 cmake --build . -- -j 4
 ```
-
+## Run
 ```
 ./FinalTicTacToe
 ./FinalTicTacToe2
