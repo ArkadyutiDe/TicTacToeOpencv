@@ -16,6 +16,6 @@ cmake --build . -- -j 4
 
 ## **Output**
 ### FinalTicTacToe
-![image](/home/arkadyuti/Nextcloud/arka_shares/cv/helloWorld/FinalTicTacToe.png "First")
+![image](FinalTicTacToe.png "First")
 ### FinalTicTacToe2
-![image](/home/arkadyuti/Nextcloud/arka_shares/cv/helloWorld/FinalTicTacToe2.png "Second")
+![image](FinalTicTacToe2.png "Second")
