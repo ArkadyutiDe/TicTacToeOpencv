@@ -15,7 +15,7 @@ cmake --build . -- -j 4
 ```
 
 ## **Output**
-### For ./FinalTicTacToe
+### FinalTicTacToe
 ![image](/home/arkadyuti/Pictures/FinalTicTacToe.png)
-### For ./FinalTicTacToe2
+### FinalTicTacToe2
 ![image](/home/arkadyuti/Pictures/FinalTicTacToe2.png)
