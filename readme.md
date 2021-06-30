@@ -3,6 +3,8 @@
 ## **Build**
 
 ```
+git clone https://github.com/ArkadyutiDe/TicTacToeOpencv.git
+cd TicTacToeOpencv/
 mkdir build
 cd build
 cmake ..
