@@ -18,6 +18,6 @@ cmake --build . -- -j 4
 
 ## **Output**
 ### FinalTicTacToe
-![image](FinalTicTacToe.png "First")
+![image](images/FinalTicTacToe.png "First")
 ### FinalTicTacToe2
-![image](FinalTicTacToe2.png "Second")
+![image](images/FinalTicTacToe2.png "Second")
